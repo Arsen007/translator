@@ -57,7 +57,7 @@ class RegisterForm extends CFormModel
 	public function write()
 	{
         $connection=Yii::app()->db;
-        $sql = 'INSERT INTO `translate`.`users` VALUES (NULL,"'.$this -> email.'" , "'.$this -> username.'", "'.$this -> password.'")';
+        $sql = 'INSERT INTO `users` VALUES (NULL,"'.$this -> email.'" , "'.$this -> username.'", "'.$this -> password.'")';
         $command = $connection->createCommand($sql);
         $result = $command -> execute(); 
 

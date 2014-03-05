@@ -55,13 +55,21 @@ return array(
         */
 		// uncomment the following to use a MySQL database
 
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=translate',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
+//		'db'=>array(
+//			'connectionString' => 'mysql:host=localhost;dbname=fr3745pu_trans',
+//			'emulatePrepare' => true,
+//			'username' => 'fr3745pu_trans',
+//			'password' => 'No9O2K63',
+//			'charset' => 'utf8',
+//		),
+
+        'db'=>array(
+      			'connectionString' => 'mysql:host=localhost;dbname=translate',
+      			'emulatePrepare' => true,
+      			'username' => 'root',
+      			'password' => '',
+      			'charset' => 'utf8',
+      		),
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

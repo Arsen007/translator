@@ -56,7 +56,7 @@ $(function(){
             return false;    
         }else{
             $.ajax({
-                url:'?r=site/registration',
+                url:'/site/registration',
                 type:"post",
                 data:{
                     ajaxRegistration:1,

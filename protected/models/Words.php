@@ -11,7 +11,7 @@ class Words extends CFormModel{
     public function getWords()
     {
         $connection = Yii::app()->db;
-        $sql = 'SELECT * FROM`translate`.`words` WHERE userID='.$this -> userID.' ORDER BY id DESC';
+        $sql = 'SELECT * FROM `words` WHERE userID='.$this -> userID.' ORDER BY id DESC';
         $command = $connection->createCommand($sql);
         $result = $command -> query()->readAll();
         return $result;
@@ -19,7 +19,7 @@ class Words extends CFormModel{
     public function addWord()
     {
         $connection = Yii::app()->db;
-        $sql = 'INSERT INTO `translate`.`words` VALUES (NULL,"'.$this -> english.'" , "'.$this -> date.'", "'.$this -> userID.'", "'.$this -> priority.'", "'.$this -> russian.'", "'.$this -> armenian.'")';
+        $sql = 'INSERT INTO `words` VALUES (NULL,"'.$this -> english.'" , "'.$this -> date.'", "'.$this -> userID.'", "'.$this -> priority.'", "'.$this -> russian.'", "'.$this -> armenian.'")';
         $command = $connection->createCommand($sql);
         $result = $command -> query();
         return $result;
@@ -28,7 +28,7 @@ class Words extends CFormModel{
     public function getWord()
     {
         $connection = Yii::app()->db;
-        $sql = 'SELECT * FROM`translate`.`words` WHERE id='.$this ->wordID;
+        $sql = 'SELECT * FROM `words` WHERE id='.$this ->wordID;
         $command = $connection->createCommand($sql);
         $result = $command -> query()->readAll();
         return $result;
@@ -37,7 +37,7 @@ class Words extends CFormModel{
     public function updateWord()
     {
         $connection = Yii::app()->db;
-        $sql = 'UPDATE `translate`.`words` SET word = "'.$this -> english.'",in_armenian = "'.$this -> armenian.'",in_russian="'.$this -> russian.'" WHERE id='.$this->wordID.'';
+        $sql = 'UPDATE `words` SET word = "'.$this -> english.'",in_armenian = "'.$this -> armenian.'",in_russian="'.$this -> russian.'" WHERE id='.$this->wordID.'';
         $command = $connection->createCommand($sql);
         $result = $command -> query();
         return $result;        
@@ -45,7 +45,7 @@ class Words extends CFormModel{
     public function deleteWord()
     {
         $connection = Yii::app()->db;
-        $sql = 'DELETE FROM `translate`.`words` WHERE id='.$this->wordID.'';
+        $sql = 'DELETE FROM `words` WHERE id='.$this->wordID.'';
         $command = $connection->createCommand($sql);
         $result = $command -> query();
         return $result;
