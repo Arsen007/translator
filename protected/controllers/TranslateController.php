@@ -142,17 +142,20 @@ class TranslateController extends Controller{
     {
         $word =  (isset($_REQUEST['word']) ? $_REQUEST['word'] : '');
         if($word != ''){
-            $url = "http://www.lpology.com/code/spellcheck/spell-pub.php";
+            $url = "https://www.lpology.com/code/spellcheck/spell-pub.php";
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,$url); // set url to post to
             curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-            curl_setopt($ch, CURLOPT_REFERER, 'http://www.lpology.com/code/spellcheck/');
+            curl_setopt($ch, CURLOPT_REFERER, 'https://www.lpology.com/code/spellcheck/');
             curl_setopt($ch, CURLOPT_FAILONERROR, 1);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);// allow redirects
             curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable
             curl_setopt($ch, CURLOPT_TIMEOUT, 3); // times out after 4s
             curl_setopt($ch, CURLOPT_POST, 1); // set POST method
             curl_setopt($ch, CURLOPT_POSTFIELDS, "text='.$word.'&X-Requested-With=XMLHttpRequest"); // add POST fields
+            curl_setopt($ch, CURLOPT_SSLVERSION,3);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             $result = curl_exec($ch); // run the whole process
             curl_close($ch);
             $results = array();
