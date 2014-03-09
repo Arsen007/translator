@@ -39,6 +39,9 @@
     .ui-menu-item{
         height: 35px;
     }
+    .ui-autocomplete{
+        z-index: 9999999!important;
+    }
 </style>
 <script>
     function getWords(){
