@@ -83,7 +83,7 @@ input{
     border: solid 1px silver;
     background-color: steelblue;
     overflow: hidden;
-    margin-top: 20%;
+    margin-top: 5%;
     padding: 5px;
     text-align: center;
     border-radius: 15px;
@@ -96,7 +96,7 @@ input{
 #edit_buttons_list li{
     display: inline;
     float: left;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 
 #edit_buttons_list li button{
