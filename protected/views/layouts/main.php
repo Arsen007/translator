@@ -12,11 +12,17 @@
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.9.0.js"></script>
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.mobile-1.4.2.min.css" />
+<!--    <script src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/js/jquery-1.9.0.js"></script>-->
+    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    <?php Yii::app()->clientScript->registerCoreScript('jquery.ui');     ?>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.tablesorter.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/activity-indicator.js"></script>
 </head>
 
 <body>
@@ -30,12 +36,12 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/home.png" />', 'url'=>array('/site/index')),
-				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/login.png" />', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/registration.png" />', 'url'=>array('/site/registration'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/add.png" />', 'url'=>array('/translate/AddWord'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/list.png" />', 'url'=>array('/translate/words'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/logout.png" />', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/home.png" />', 'url'=>array('/site/index'),'linkOptions' => array('data-transition' => 'flow')),
+				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/login.png" />', 'url'=>array('/site/login'),'linkOptions' => array('data-transition' => 'flow'), 'visible'=>Yii::app()->user->isGuest),
+                array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/registration.png" />', 'url'=>array('/site/registration'),'linkOptions' => array('data-transition' => 'flow'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/add.png" />', 'url'=>array('/translate/AddWord'),'linkOptions' => array('data-transition' => 'flow'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/list.png" />', 'url'=>array('/translate/words'),'linkOptions' => array('data-transition' => 'flow'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'<img src="'.Yii::app()->request->baseUrl.'/images/logout.png" />', 'url'=>array('/site/logout'), 'linkOptions' => array('data-transition' => 'flow'),'visible'=>!Yii::app()->user->isGuest)
 			),
             'encodeLabel'=>false,
 

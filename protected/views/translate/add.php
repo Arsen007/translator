@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />-->
 <?php
-Yii::app()->clientScript->registerCoreScript('jquery.ui');
-?>
+//Yii::app()->clientScript->registerCoreScript('jquery.ui');
+//?>
 <style>
     .ui-menu-item{
         font-size: 20px;
         border: 1px solid silver;
         border-radius: 6px;
-        height: 5   0px;
+        height: 50px;
         
     }
     .labels{
@@ -22,18 +22,22 @@ Yii::app()->clientScript->registerCoreScript('jquery.ui');
         font-family: Tahoma;
     }
     
-    input[type="button"]{
-        width: 250px;
-        font-size: 20px;
-        border: 1px solid blue;
-        background: silver;
-        border-radius: 5px;
-    }
+    /*input[type="button"]{*/
+        /*width: 250px;*/
+        /*font-size: 20px;*/
+        /*border: 1px solid blue;*/
+        /*background: silver;*/
+        /*border-radius: 5px;*/
+    /*}*/
     
     .ajax-load{
         background-image: url("<?php echo Yii::app()->baseUrl?>/images/ajax-loader.gif")!important;
         background-repeat: no-repeat!important;
         background-position: 212px 8px!important;
+    }
+
+    .ui-menu-item{
+        height: 35px;
     }
 </style>
 <script>
@@ -74,13 +78,13 @@ Yii::app()->clientScript->registerCoreScript('jquery.ui');
             }
         );
         $('#wordfield').on('keyup paste change input propertychange',function(){
-            $('#save').prop('disabled','disabled');
-            $('#russian').html('');
-            $('#armenian').html('');
+            $('#save').button('disable');
+            $('#russian').html('').selectmenu('refresh', true);
+            $('#armenian').html('').selectmenu('refresh', true);
             if(isNaN($(this).val()) &&  $(this).val() != ''){
-                $('#get').removeAttr('disabled');
+                $('#get').button('enable');
             }else{
-                $('#get').prop('disabled','disabled');
+                $('#get').button('disable');
             }
         })
         $('#wordfield').keydown(function(e){
@@ -98,18 +102,28 @@ Yii::app()->clientScript->registerCoreScript('jquery.ui');
                         type:"post",
                         dataType:"json",
                         success: function(data) {
-                            thisElement.removeClass('ajax-load').removeAttr('disabled');;
+                            thisElement.removeClass('ajax-load').removeAttr('disabled');
+                            console.log(data);
                             if(Object.keys(data.ru).length > 0){
                                 $('#russian').html('');
                                 $('#armenian').html('');
                                 $.each(data.ru,function(index,element){
-                                    $('#russian').append('<option>'+element+'</option>');
+                                    if(index ==0){
+                                        $('#russian').append('<option selected="selected">'+element+'</option>');
+                                    }else{
+                                        $('#russian').append('<option>'+element+'</option>');
+                                    }
                                 });
+                                $('#russian').selectmenu('refresh', true);
                                 $.each(data.hy,function(index,element){
+                                    if(index ==0){
+                                        $('#armenian').append('<option selected="selected" >'+element+'</option>');
+                                    }
                                     $('#armenian').append('<option>'+element+'</option>');
                                 });
-                                
-                                $('#save').removeAttr('disabled','disabled');
+                                $('#armenian').selectmenu('refresh', true);
+
+                                $('#save').button('enable');
                             }
 
                         }
@@ -129,7 +143,7 @@ Yii::app()->clientScript->registerCoreScript('jquery.ui');
                 },
                 type:"post",
                 success: function(data) {
-                    thisElement.removeClass('ajax-load').prop('disabled','disabled');
+                    thisElement.removeClass('ajax-load').button('disable');
                     console.log(data);
                 }
             })

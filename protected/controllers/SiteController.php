@@ -80,16 +80,19 @@ class SiteController extends Controller
 		$model=new LoginForm;
 
 		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		if(isset($_POST['email']))
 		{
             $model->attributes=$_POST;
             // validate user input and redirect to the previous page if valid
             if($model->validate() && $model->login()){
-                echo '1';
+                $this->redirect(Yii::app()->createAbsoluteUrl('site/index'));
+            }else{
+                $this->render('login',array('error'=>'Wrong login or password!'));
+
             }
             	
 		}else{
-		    $this->render('login',array('model'=>$model));
+		    $this->render('login');
 		}
 
 		// display the login form

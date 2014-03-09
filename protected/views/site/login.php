@@ -15,6 +15,9 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 <h1>Login</h1>
 
 <div id="errors" >
+    <?php if(isset($error)){
+        echo '<p>'.$error.'</p>';
+    }?>
 </div>
 <div id="register_container" class="login_register_container">
     <div class="typers">

@@ -6,10 +6,8 @@
  * Time: 12:04 AM
  * To change this template use File | Settings | File Templates.
  */
- $baseUrl = Yii::app()->baseUrl; 
-  $cs = Yii::app()->getClientScript();
-  $cs->registerScriptFile($baseUrl.'/js/jquery.tablesorter.min.js');
-  $cs->registerScriptFile($baseUrl.'/js/activity-indicator.js');
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
 ?>
 <style>
     td{
@@ -77,6 +75,7 @@ input{
     background-color: rgba(0,0,0,0.67);
     left: 0;
     top: 0;
+    z-index: 999;
 }
 #edit{
     margin: 0 auto;
@@ -122,13 +121,29 @@ input{
         border-radius: 15px;
         display: none;
     }
+#toggle_container{
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.66);
+    padding: 5px;
+    border-radius: 7px;
+    z-index: 99;
+}
+
+#flip-mini-label{
+    text-shadow: none!important;
+    color: white!important;
+}
 </style>
 
 <script>
 var wordID = false;
+$(document).on('pageshow',function(){
+    $('#words').tablesorter({widgets: ['zebra']});
+
+})
     $(function(){
-        $('#words').tablesorter({widgets: ['zebra']}); 
-        
         $('tr:gt(0)').on('click',function(e){
 //            wordID = $(this).attr('id');
 //            $.ajax({
@@ -218,6 +233,17 @@ var wordID = false;
         }
         })
 
+        $("#flip-mini").on('slidestop',function(){
+            if($(this).val() == 'off'){
+                $('table tr').each(function(index,element){
+                    $(this).find('td:gt(0)').css('opacity',0)
+                })
+            }else{
+                $('table tr').each(function(index,element){
+                    $(this).find('td:gt(0)').css('opacity',10)
+                })
+            }
+        })
     })
 </script>
 <div id="editBackground">
@@ -237,6 +263,13 @@ var wordID = false;
     </ul>
 
 </div>
+</div>
+<div id="toggle_container">
+    <label for="flip-mini">Translates</label>
+    <select name="flip-mini" id="flip-mini" data-role="slider" data-mini="true">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+    </select>
 </div>
 <div style="overflow-x: scroll">
 <table id="words" class="tablesorter">

@@ -199,13 +199,13 @@ class TranslateController extends Controller{
     
     public function actionUpdateWord()
     {
-        if(isset($_POST['updateAjax']) && isset($_POST['english']) && isset($_POST['russian']) && isset($_POST['armenian'])){
+        if(isset($_REQUEST['updateAjax']) && isset($_REQUEST['english']) && isset($_REQUEST['russian']) && isset($_REQUEST['armenian'])){
             $model = new Words();
             $model ->attributes = array(
-                'english' => $_POST['english'],
-                'russian' => $_POST['russian'],
-                'armenian' => $_POST['armenian'],
-                'wordID' => $_POST['wordID']
+                'english' => $_REQUEST['english'],
+                'russian' => $_REQUEST['russian'],
+                'armenian' => $_REQUEST['armenian'],
+                'wordID' => $_REQUEST['wordID']
             );
             $words = $model ->updateWord();
         }
@@ -213,10 +213,10 @@ class TranslateController extends Controller{
 
     public function actionDeleteWord()
     {
-        if(isset($_POST['deleteAjax']) && isset($_POST['wordID'])){
+        if(isset($_REQUEST['deleteAjax']) && isset($_REQUEST['wordID'])){
             $model = new Words();
             $model ->attributes = array(
-                'wordID' => $_POST['wordID']
+                'wordID' => $_REQUEST['wordID']
             );
             $words = $model ->deleteWord();
             echo json_encode($words);
