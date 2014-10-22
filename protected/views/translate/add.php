@@ -61,8 +61,11 @@
     }
 
     $(function(){
-        $(document).on('pageshow', "[data-role=page]", function () { setTimeout(function () { $('#wordfield').trigger('click').focus(); }, 50); });
-//        $('#wordfield').trigger('click');
+        $(document).on('pageshow', "[data-role=page]", function () {
+            setTimeout(function () {
+                $('#wordfield').trigger('click').focus();
+            });
+        });
 
         $('#wordfield').autocomplete(
             {
@@ -76,11 +79,11 @@
                         }
                     });
                 },
-                delay:50,
-                minLength: 2
+                delay:0,
+                minLength: 3
             }
         );
-        $('#wordfield').off();
+        $('#wordfield').die();
         $('#wordfield').on('keyup paste change input propertychange',function(){
             $('#save').button('disable');
             $('#russian').html('').selectmenu('refresh', true);
