@@ -19,13 +19,17 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
 	    $connection=Yii::app()->db;
-        $sql = 'SELECT id FROM `users` WHERE `email`="'.$this->username.'" AND `password`="'.$this->password.'"';
+        $sql = 'SELECT * FROM `users` WHERE `email`="'.$this->username.'"';
         $command = $connection->createCommand($sql);
         $result = $command -> query() ->readAll();
+        if(!empty($result)){
+            $password = $result[0]['password'];
+        }
         if(empty($result))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		elseif(false)
+		elseif(!CPasswordHelper::verifyPassword($this->password,$password)){
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+        }
 		else{
 			$this->errorCode=self::ERROR_NONE;
             $this->_id=$result[0]['id'];

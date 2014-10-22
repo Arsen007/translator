@@ -104,12 +104,12 @@ class SiteController extends Controller
      */
     public function actionRegistration()
     {
-        if(isset($_POST['ajaxRegistration'])){
+        if(!empty($_POST)){
             $model=new RegisterForm;
             $model->attributes=array(
                 'email'=>$_POST['email'],
                 'username' => $_POST['username'],
-                'password' => $_POST['password']
+                'password' => CPasswordHelper::hashPassword($_POST['password'])
             );
             if($model ->validate()){
                 $result = $model ->write();
