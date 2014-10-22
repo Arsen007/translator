@@ -203,7 +203,7 @@
 </script>
 
 <!--<input type="text" id="autocomplete" autofocus="" style="font-size: 23px;" placeholder="Type your word" />-->
-<ul id="autocomplete2" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Find a city..." data-filter-theme="a"></ul>
+<ul id="autocomplete2" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Type here..." data-filter-theme="a"></ul>
 <br />
 <input type="button" value="Get translate" id="get" disabled="disabled"/>
 <br /><br />
