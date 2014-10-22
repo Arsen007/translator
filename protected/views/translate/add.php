@@ -85,7 +85,7 @@
 //                minLength: 3
 //            }
 //        );
-        $('#wordfield').die();
+//        $('#wordfield').die();
         $('.ui-input-search input').on('keyup paste change input propertychange',function(){
             $('#save').button('disable');
             $('#russian').html('').selectmenu('refresh', true);
@@ -143,10 +143,10 @@
             $(this).addClass('ajax-load');
             var thisElement = $(this); 
             $.ajax({
-                url: "?r=translate/AddWord",
+                url: "<?php echo Yii::app()->createAbsoluteurl('translate/AddWord') ?>",
                 data: {
                     addAjax:1,
-                    english:$('#wordfield').val(),
+                    english:$('.ui-input-search input').val(),
                     russian:$('#russian option:selected').text(),
                     armenian:$('#armenian option:selected').text()
                 },

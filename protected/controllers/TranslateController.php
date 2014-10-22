@@ -163,10 +163,10 @@ class TranslateController extends Controller{
             if($decoded ->errors == 1){
                 $results = $decoded->words->$word;
             }else{
-                $results['fetched'] = false;
+//                $results['fetched'] = false;
             }
         }else{
-            $results['fetched'] = false;
+//            $results['fetched'] = false;
         }
 
         echo json_encode($results);
