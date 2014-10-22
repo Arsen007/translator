@@ -80,6 +80,7 @@
                 minLength: 2
             }
         );
+        $('#wordfield').off();
         $('#wordfield').on('keyup paste change input propertychange',function(){
             $('#save').button('disable');
             $('#russian').html('').selectmenu('refresh', true);
@@ -132,7 +133,7 @@
                         }
             })
         })
-
+        $('#save').off();
         $('#save').click(function(){
             $(this).addClass('ajax-load');
             var thisElement = $(this); 
